@@ -86,6 +86,13 @@ GEM
       dotenv (= 2.7.6)
       railties (>= 3.2)
     erubi (1.10.0)
+    factory_bot (6.2.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
+    faker (2.19.0)
+      i18n (>= 1.6, < 2)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.10.0)
@@ -202,6 +209,8 @@ GEM
       rubocop (>= 1.7.0, < 2.0)
     ruby-progressbar (1.11.0)
     set (1.0.2)
+    shoulda-matchers (5.0.0)
+      activesupport (>= 5.2.0)
     sorted_set (1.0.3)
       rbtree
       set (~> 1.0)
@@ -224,6 +233,8 @@ DEPENDENCIES
   business_time (~> 0.11.0)
   debug
   dotenv-rails (~> 2.7)
+  factory_bot_rails (~> 6.2)
+  faker (~> 2.19)
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.2, >= 7.0.2.2)
@@ -231,6 +242,7 @@ DEPENDENCIES
   rubocop (~> 1.25.1)
   rubocop-performance (~> 1.13.2)
   rubocop-rails (~> 2.13.2)
+  shoulda-matchers (~> 5.0.0)
   tzinfo-data
 
 RUBY VERSION

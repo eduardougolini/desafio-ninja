@@ -40,6 +40,8 @@ gem 'business_time',                '~> 0.11.0'
 
 group :development, :test do
   gem 'dotenv-rails',               '~> 2.7'
+  gem 'factory_bot_rails',          '~> 6.2'
+  gem 'faker',                      '~> 2.19'
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
@@ -53,3 +55,6 @@ group :development do
   gem 'rubocop-rails',              '~> 2.13.2', require: false
 end
 
+group :test do
+  gem 'shoulda-matchers',           '~> 5.0.0', require: false
+end
