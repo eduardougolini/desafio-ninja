@@ -70,6 +70,10 @@ GEM
     bootsnap (1.10.3)
       msgpack (~> 1.2)
     builder (3.2.4)
+    business_time (0.11.0)
+      activesupport (>= 3.2.0)
+      sorted_set
+      tzinfo
     concurrent-ruby (1.1.9)
     crass (1.0.6)
     debug (1.4.0)
@@ -156,6 +160,7 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.0.6)
+    rbtree (0.4.5)
     regexp_parser (2.2.1)
     reline (0.3.1)
       io-console (~> 0.5)
@@ -196,6 +201,10 @@ GEM
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
     ruby-progressbar (1.11.0)
+    set (1.0.2)
+    sorted_set (1.0.3)
+      rbtree
+      set (~> 1.0)
     strscan (3.0.1)
     thor (1.2.1)
     timeout (0.2.0)
@@ -212,6 +221,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  business_time (~> 0.11.0)
   debug
   dotenv-rails (~> 2.7)
   pg (~> 1.1)
