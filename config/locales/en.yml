@@ -7,3 +7,4 @@ en:
             base:
               different_days: The appointment start and end must occurs in the same day
               out_of_business_hours: The appointment start and end must occurs during business hours
+              already_scheduled: The room is already scheduled for this time

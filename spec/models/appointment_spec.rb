@@ -54,4 +54,58 @@ RSpec.describe Appointment, type: :model do
       end
     end
   end
+
+  describe '#already_scheduled' do
+    context 'when the start at overlaps with an existent appointment' do
+      it 'adds an error to the object' do
+        room = create(:room)
+        create(:appointment, start_at: 1.business_hour.from_now, end_at: 3.business_hour.from_now, room:)
+        room.reload
+
+        appointment = build(:appointment, start_at: 2.business_hour.from_now, end_at: 4.business_hour.from_now, room:)
+        appointment.valid?
+
+        expect(appointment.errors).to be_added(:base, :already_scheduled)
+      end
+    end
+
+    context 'when the end at overlaps with an existent appointment' do
+      it 'adds an error to the object' do
+        room = create(:room)
+        create(:appointment, start_at: 2.business_hour.from_now, end_at: 4.business_hour.from_now, room:)
+        room.reload
+
+        appointment = build(:appointment, start_at: 1.business_hour.from_now, end_at: 3.business_hour.from_now, room:)
+        appointment.valid?
+
+        expect(appointment.errors).to be_added(:base, :already_scheduled)
+      end
+    end
+
+    context 'when the start at and the end at overlaps with an existent appointment' do
+      it 'adds an error to the object' do
+        room = create(:room)
+        create(:appointment, start_at: 1.business_hour.from_now, end_at: 4.business_hour.from_now, room:)
+        room.reload
+
+        appointment = build(:appointment, start_at: 2.business_hour.from_now, end_at: 3.business_hour.from_now, room:)
+        appointment.valid?
+
+        expect(appointment.errors).to be_added(:base, :already_scheduled)
+      end
+    end
+
+    context 'when the start at and the end at doesn\'t overlaps with an existent appointment' do
+      it 'adds an error to the object' do
+        room = create(:room)
+        create(:appointment, start_at: 1.business_hour.from_now, end_at: 2.business_hour.from_now, room:)
+        room.reload
+
+        appointment = build(:appointment, start_at: 3.business_hour.from_now, end_at: 4.business_hour.from_now, room:)
+        appointment.valid?
+
+        expect(appointment.errors).to_not be_added(:base, :already_scheduled)
+      end
+    end
+  end
 end

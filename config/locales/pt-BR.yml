@@ -7,3 +7,4 @@ pt-BR:
             base:
               different_days: O início e o fim do agendamento devem ocorrer no mesmo dia
               out_of_business_hours: O início e o fim do agendamento devem ocorrer durante o horário comercial
+              already_scheduled: A sala já está reservada para este horário
