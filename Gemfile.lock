@@ -216,6 +216,7 @@ GEM
       set (~> 1.0)
     strscan (3.0.1)
     thor (1.2.1)
+    timecop (0.9.4)
     timeout (0.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
@@ -243,6 +244,7 @@ DEPENDENCIES
   rubocop-performance (~> 1.13.2)
   rubocop-rails (~> 2.13.2)
   shoulda-matchers (~> 5.0.0)
+  timecop (~> 0.9)
   tzinfo-data
 
 RUBY VERSION

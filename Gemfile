@@ -59,4 +59,5 @@ end
 
 group :test do
   gem 'shoulda-matchers',           '~> 5.0.0', require: false
+  gem 'timecop',                    '~> 0.9'
 end
