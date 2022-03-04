@@ -14,3 +14,8 @@ AllCops:
     - bin/*
     - config/initializers/**/*
     - config/routes/*
+
+Metrics/BlockLength:
+  Max: 70
+  Exclude:
+    - 'spec/**/*'
