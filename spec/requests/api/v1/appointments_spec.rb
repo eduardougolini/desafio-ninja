@@ -182,11 +182,12 @@ RSpec.describe 'API V1 Appointments', type: :request do
         put "/api/v1/rooms/#{appointment.room.id}/appointments/#{appointment.id}", params: {
           appointment: {
             start_at:
-          }
+          },
+          locale: 'pt-BR'
         }
 
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(JSON.parse(response.body)['error']).to include('Start at can\'t be blank')
+        expect(JSON.parse(response.body)['error']).to include('Start at não pode ficar em branco')
       end
     end
 

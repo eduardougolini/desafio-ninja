@@ -11,3 +11,5 @@ pt-BR:
   errors:
     messages:
       missing_param: Parâmetro não foi informado ou seu valor está vazio
+      blank: não pode ficar em branco
+      greater_than: deve ser maior que %{count}
