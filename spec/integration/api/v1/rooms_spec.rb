@@ -75,13 +75,6 @@ RSpec.describe 'api/v1/rooms', type: :request do
           }
         end
 
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
         run_test!
       end
     end

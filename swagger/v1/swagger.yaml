@@ -4,6 +4,88 @@ info:
   title: API V1
   version: v1
 paths:
+  "/api/v1/rooms/{room_id}/appointments":
+    parameters:
+    - name: room_id
+      in: path
+      description: room_id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: list appointments
+      tags:
+      - Appointments
+      responses:
+        '200':
+          description: returns all appointments for the room
+    post:
+      summary: create appointment
+      tags:
+      - Appointments
+      parameters: []
+      responses:
+        '200':
+          description: succesfully creates a new appointment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_at:
+                  type: string
+                end_at:
+                  type: string
+              required:
+              - start_at
+              - end_at
+  "/api/v1/rooms/{room_id}/appointments/{appointment_id}":
+    parameters:
+    - name: room_id
+      in: path
+      description: room_id
+      required: true
+      schema:
+        type: string
+    - name: appointment_id
+      in: path
+      description: appointment_id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show appointment
+      tags:
+      - Appointments
+      responses:
+        '200':
+          description: returns the appointment data
+    put:
+      summary: update appointment
+      tags:
+      - Appointments
+      parameters: []
+      responses:
+        '200':
+          description: updates an appointment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_at:
+                  type: string
+                end_at:
+                  type: string
+    delete:
+      summary: delete appointment
+      tags:
+      - Appointments
+      responses:
+        '204':
+          description: deletes an appointment
   "/api/v1/rooms":
     get:
       summary: list rooms
