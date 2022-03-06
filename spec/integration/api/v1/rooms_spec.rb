@@ -40,15 +40,15 @@ RSpec.describe 'api/v1/rooms', type: :request do
     end
   end
 
-  path '/api/v1/rooms/{id}' do
-    parameter name: 'id', in: :path, type: :string, description: 'id'
+  path '/api/v1/rooms/{room_id}' do
+    parameter name: 'room_id', in: :path, type: :string, description: 'room_id'
 
     get('show room') do
       tags 'Rooms'
       response(200, 'returns the room data') do
         schema '$ref' => '#/components/schemas/room'
 
-        let(:id) { create(:room).id }
+        let(:room_id) { create(:room).id }
 
         run_test!
       end
@@ -67,7 +67,7 @@ RSpec.describe 'api/v1/rooms', type: :request do
       response(200, 'updates a room') do
         schema '$ref' => '#/components/schemas/room'
 
-        let(:id) { create(:room).id }
+        let(:room_id) { create(:room).id }
         let(:room) do
           {
             title: Faker::Games::DnD.monster,
@@ -82,7 +82,7 @@ RSpec.describe 'api/v1/rooms', type: :request do
     delete('delete room') do
       tags 'Rooms'
       response(204, 'deletes a room') do
-        let(:id) { create(:room).id }
+        let(:room_id) { create(:room).id }
 
         run_test!
       end

@@ -115,11 +115,11 @@ paths:
               required:
               - title
               - description
-  "/api/v1/rooms/{id}":
+  "/api/v1/rooms/{room_id}":
     parameters:
-    - name: id
+    - name: room_id
       in: path
-      description: id
+      description: room_id
       required: true
       schema:
         type: string
