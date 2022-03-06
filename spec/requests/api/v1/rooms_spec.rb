@@ -149,7 +149,7 @@ RSpec.describe 'API V1 Rooms', type: :request do
         }
 
         expected_response = {
-          id: anything,
+          id: room.id,
           type: 'room',
           attributes: {
             description:,
