@@ -3,6 +3,9 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/v1/rooms/{room_id}/appointments', type: :request do
+  before { Timecop.freeze '2022-03-03 21:00:00' }
+  after { Timecop.return }
+
   path '/api/v1/rooms/{room_id}/appointments' do
     parameter name: 'room_id', in: :path, type: :string, description: 'room_id'
 
@@ -10,6 +13,9 @@ RSpec.describe 'api/v1/rooms/{room_id}/appointments', type: :request do
       tags 'Appointments'
       response(200, 'returns all appointments for the room') do
         schema '$ref' => '#/components/schemas/appointments'
+
+        let(:appointment) { create(:appointment) }
+        let(:room_id) { appointment.room.id }
 
         run_test!
       end
@@ -30,6 +36,7 @@ RSpec.describe 'api/v1/rooms/{room_id}/appointments', type: :request do
       response(200, 'succesfully creates a new appointment') do
         schema '$ref' => '#/components/schemas/appointment'
 
+        let(:room_id) { create(:room).id }
         let(:appointment) do
           {
             start_at: 1.business_hour.from_now,
@@ -77,7 +84,8 @@ RSpec.describe 'api/v1/rooms/{room_id}/appointments', type: :request do
         let(:room_id) { appointment_object.room.id }
         let(:appointment) do
           {
-            start_at: 1.business_hour.from_now
+            start_at: 5.business_hour.from_now,
+            end_at: 6.business_hour.from_now
           }
         end
 
