@@ -101,6 +101,27 @@ RSpec.describe 'API V1 Appointments', type: :request do
       end
     end
 
+    context 'when an error occurs' do
+      it 'returns an :unprocessable_entity http code' do
+        appointment = build(:appointment, start_at: nil)
+        allow(Appointment).to receive(:new).and_return(appointment)
+
+        room = create(:room)
+        start_at = 1.business_hour.from_now
+        end_at = 2.business_hour.from_now
+
+        post "/api/v1/rooms/#{room.id}/appointments", params: {
+          appointment: {
+            start_at:,
+            end_at:
+          }
+        }
+
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(JSON.parse(response.body)['error']).to include('Start at can\'t be blank')
+      end
+    end
+
     context 'when the params are valid' do
       it 'creates a new appointment' do
         room = create(:room)
@@ -148,6 +169,24 @@ RSpec.describe 'API V1 Appointments', type: :request do
 
         expect(response).to have_http_status(:bad_request)
         expect(JSON.parse(response.body)['error']).to eq('Param is missing or the value is empty')
+      end
+    end
+
+    context 'when an error occurs' do
+      it 'returns an :unprocessable_entity http code' do
+        appointment = create(:appointment)
+        start_at = nil
+
+        allow(appointment).to receive(:update).and_return(false)
+
+        put "/api/v1/rooms/#{appointment.room.id}/appointments/#{appointment.id}", params: {
+          appointment: {
+            start_at:
+          }
+        }
+
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(JSON.parse(response.body)['error']).to include('Start at can\'t be blank')
       end
     end
 

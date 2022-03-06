@@ -89,6 +89,23 @@ RSpec.describe 'API V1 Rooms', type: :request do
       end
     end
 
+    context 'when an error occurs' do
+      it 'returns an :unprocessable_entity http code' do
+        room = build(:room, title: nil)
+        allow(Room).to receive(:new).and_return(room)
+
+        post '/api/v1/rooms', params: {
+          room: {
+            title: Faker::Games::DnD.monster,
+            description: Faker::Books::Lovecraft.sentence
+          }
+        }
+
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(JSON.parse(response.body)['error']).to include('Title can\'t be blank')
+      end
+    end
+
     context 'when the params are valid' do
       it 'creates a new room' do
         title = Faker::Games::DnD.monster
@@ -132,6 +149,22 @@ RSpec.describe 'API V1 Rooms', type: :request do
 
         expect(response).to have_http_status(:bad_request)
         expect(JSON.parse(response.body)['error']).to eq('Param is missing or the value is empty')
+      end
+    end
+
+    context 'when an error occurs' do
+      it 'returns an :unprocessable_entity http code' do
+        room = create(:room)
+
+        put "/api/v1/rooms/#{room.id}", params: {
+          room: {
+            title: nil,
+            description: Faker::Books::Lovecraft.sentence
+          }
+        }
+
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(JSON.parse(response.body)['error']).to include('Title can\'t be blank')
       end
     end
 
