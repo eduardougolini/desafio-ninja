@@ -1,0 +1,144 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/rooms":
+    get:
+      summary: list rooms
+      tags:
+      - Rooms
+      responses:
+        '200':
+          description: returns all registered rooms
+    post:
+      summary: create room
+      tags:
+      - Rooms
+      parameters: []
+      responses:
+        '200':
+          description: succesfully creates a new room
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+              required:
+              - title
+              - description
+  "/api/v1/rooms/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show room
+      tags:
+      - Rooms
+      responses:
+        '200':
+          description: returns the room data
+    put:
+      summary: update room
+      tags:
+      - Rooms
+      parameters: []
+      responses:
+        '200':
+          description: updates a room
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+    delete:
+      summary: delete room
+      tags:
+      - Rooms
+      responses:
+        '204':
+          description: deletes a room
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000
+components:
+  schemas:
+    rooms:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            "$ref": "#/components/schemas/room"
+    room:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        attributes:
+          type: object
+          properties:
+            title:
+              type: string
+            description:
+              type: string
+        relationships:
+          type: object
+          properties:
+            appointments:
+              type: object
+              properties:
+                id:
+                  type: string
+                type:
+                  type: string
+    appointments:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            "$ref": "#/components/schemas/appointment"
+    appointment:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        attributes:
+          type: object
+          properties:
+            start_at:
+              type: string
+            end_ad:
+              type: string
+        relationships:
+          type: object
+          properties:
+            room:
+              type: object
+              properties:
+                id:
+                  type: string
+                type:
+                  type: string

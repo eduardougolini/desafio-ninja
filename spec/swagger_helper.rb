@@ -24,14 +24,92 @@ RSpec.configure do |config|
       paths: {},
       servers: [
         {
-          url: 'https://{defaultHost}',
+          url: 'http://{defaultHost}',
           variables: {
             defaultHost: {
-              default: 'www.example.com'
+              default: 'localhost:3000'
             }
           }
         }
-      ]
+      ],
+      components: {
+        schemas: {
+          rooms: {
+            type: :object,
+            properties: {
+              data: {
+                type: :array,
+                items: {
+                  '$ref' => '#/components/schemas/room'
+                }
+              }
+            }
+          },
+          room: {
+            type: :object,
+            properties: {
+              id: { type: :string },
+              type: { type: :string },
+              attributes: {
+                type: :object,
+                properties: {
+                  title: { type: :string },
+                  description: { type: :string }
+                }
+              },
+              relationships: {
+                type: :object,
+                properties: {
+                  appointments: {
+                    type: :object,
+                    properties: {
+                      id: { type: :string },
+                      type: { type: :string }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          appointments: {
+            type: :object,
+            properties: {
+              data: {
+                type: :array,
+                items: {
+                  '$ref' => '#/components/schemas/appointment'
+                }
+              }
+            }
+          },
+          appointment: {
+            type: :object,
+            properties: {
+              id: { type: :string },
+              type: { type: :string },
+              attributes: {
+                type: :object,
+                properties: {
+                  start_at: { type: :string },
+                  end_ad: { type: :string }
+                }
+              },
+              relationships: {
+                type: :object,
+                properties: {
+                  room: {
+                    type: :object,
+                    properties: {
+                      id: { type: :string },
+                      type: { type: :string }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 
