@@ -29,7 +29,7 @@ class Appointment < ApplicationRecord
     return if room.nil?
 
     appointments = room.appointments.find do |appointment|
-      next if id.nil?
+      next if appointment.id.nil?
 
       (start_at..end_at).overlaps?(appointment.start_at..appointment.end_at)
     end

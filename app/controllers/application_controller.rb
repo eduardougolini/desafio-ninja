@@ -10,6 +10,6 @@ class ApplicationController < ActionController::API
   end
 
   def missing_param
-    render json: { error: I18n.t('errors.messages.missing_param') }, status: :unprocessable_entity
+    render json: { error: I18n.t('errors.messages.missing_param') }, status: :bad_request
   end
 end

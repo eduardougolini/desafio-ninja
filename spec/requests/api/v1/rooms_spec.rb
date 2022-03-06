@@ -79,12 +79,12 @@ RSpec.describe 'API V1 Rooms', type: :request do
 
   describe 'POST /api/v1/rooms' do
     context 'when the params are invalid' do
-      it 'returns an :unprocessable_entity http code' do
+      it 'returns an :bad_request http code' do
         post '/api/v1/rooms', params: {
           title: Faker::Games::DnD.monster
         }
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:bad_request)
         expect(JSON.parse(response.body)['error']).to eq('Param is missing or the value is empty')
       end
     end
@@ -123,14 +123,14 @@ RSpec.describe 'API V1 Rooms', type: :request do
 
   describe 'PUT /api/v1/rooms/{room_id}' do
     context 'when the params are invalid' do
-      it 'returns an :unprocessable_entity http code' do
+      it 'returns an :bad_request http code' do
         room = create(:room)
 
         put "/api/v1/rooms/#{room.id}", params: {
           title: Faker::Games::DnD.monster
         }
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:bad_request)
         expect(JSON.parse(response.body)['error']).to eq('Param is missing or the value is empty')
       end
     end
