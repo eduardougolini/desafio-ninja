@@ -34,3 +34,5 @@ The application has 100% of code coverage and can be checked by running the foll
 ```sh
 $ docker-compose exec rails sh -c "COVERAGE=on bundle exec rspec"
 ```
+
+The default language of the application is english, but it can be changed to brazilian portuguese by passing the param `locale=pt-BR` in the requests.
