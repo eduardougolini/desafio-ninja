@@ -40,11 +40,15 @@ gem 'bootsnap', require: false
 
 gem 'business_time',                '~> 0.11.0'
 gem 'jsonapi-serializer',           '~> 2.2'
+gem 'rswag-api',                    '~> 2.5'
+gem 'rswag-ui',                     '~> 2.5'
 
 group :development, :test do
   gem 'dotenv-rails',               '~> 2.7'
   gem 'factory_bot_rails',          '~> 6.2'
   gem 'faker',                      '~> 2.19'
+  gem 'rspec-rails',                '~> 5.1.0'
+  gem 'rswag-specs',                '~> 2.5'
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
 end
@@ -52,7 +56,6 @@ end
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
-  gem 'rspec-rails',                '~> 5.1.0'
   gem 'rubocop',                    '~> 1.25.1', require: false
   gem 'rubocop-performance',        '~> 1.13.2', require: false
   gem 'rubocop-rails',              '~> 2.13.2', require: false
