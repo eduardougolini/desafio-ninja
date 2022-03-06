@@ -14,7 +14,6 @@ services:
     build: .
     container_name: getninjas_application
     working_dir: /getninjas
-    command: bin/rails s -b 0.0.0.0
     volumes:
       - .:/getninjas:delegated
     environment:
